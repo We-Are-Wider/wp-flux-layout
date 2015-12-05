@@ -10,11 +10,13 @@
 
 /*
 
+
 /////////  VERSION HISTORY
 
-0.1 - Initial release
+0.1 - Initial work-in-progress release
 
 */
+
 
 /**
  *
@@ -26,6 +28,7 @@ function wpcms_fluxl_textdom() {
 	load_plugin_textdomain( 'wpcms-flux-layout', false, dirname( plugin_basename(__FILE__) ) . '/lang/' );
 }
 add_action( 'plugins_loaded', 'wpcms_fluxl_textdom') ;
+
 
 /**
  *
@@ -183,8 +186,8 @@ class wpcms_flux_layout {
 
 	}
 
+
 	/**
-	 *
 	 * Returns array of values numeric ready to use with dropdown
 	 *
 	 * @param  [integer]	$low Number where youd like to start
@@ -201,32 +204,30 @@ class wpcms_flux_layout {
 
 	}
 
+
 	/**
-	 *
 	 * Common customizer sanitization callback function
-	 *
 	 */
 	function sanitize_numeric( $input ) {
 		return ( isset($input) && is_numeric($input) ) ? $input : false;
 	}
 
+
 	/**
-	 *
 	 * Common customizer sanitization callback function
-	 *
 	 */
-	function sanitize_nohtml( $input ) {
+	function sanitize_no_html( $input ) {
 		return ( isset($input) ) ? wp_filter_nohtml_kses( trim($input) ) : false;
 	}
 
+
 	/**
-	 *
 	 * Common customizer sanitization callback function
-	 *
 	 */
 	function sanitize_checkbox( $input ) {
 		return ( isset($input) && $input === true ) ? true : false;
 	}
+
 
 }
 ?>
