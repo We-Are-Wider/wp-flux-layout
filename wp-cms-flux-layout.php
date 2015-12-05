@@ -48,10 +48,13 @@ add_action( 'after_setup_theme','wpcms_fluxl_do', 1 );
 class wpcms_flux_layout {
 
 	//var $plugin; /* Common plugin definition */
+	var $db_key = 'wpcms_flux_layout';		/* Sets up option_name prepend string so we can switch to Wonderflux options if required */
 
 	function __construct() {
 
 	    //$this->widget_data = get_option( $this->plugin );
+	    // EXPERIMENTAL - Wonderflux theme framework options integration, cute!
+		$this->db_key = ( class_exists('wflux_theme_all') ) ? 'wonderflux_display' : 'wpcms_flux_layout';
 		add_action('customize_register', array($this, 'customizer_do') );
 
 	}
@@ -61,8 +64,8 @@ class wpcms_flux_layout {
 		//////// PANELS ////////
 
 		$wp_customize->add_panel( 'wpcms_flux_layout', array(
-		  'title'			=> esc_html__( 'Flux Layout', 'wpcms-flux-layout' ),
-		  'description'		=> esc_html__( 'Configure Flux Layout CSS options.', 'wpcms-flux-layout' ),
+		  'title'			=> ( $this->db_key == 'wonderflux_display' ) ? esc_html__( 'Wonderflux', 'wpcms-flux-layout' ) : esc_html__( 'Flux Layout', 'wpcms-flux-layout' ),
+		  'description'		=> __( wp_kses_post('Flux Layout Generates a dynamic responsive CSS grid - any columns, any width (almost!). <a href="http://fluxlayout.com" target="_blank">Visit the Flux Layout website</a> for more information on how to use this.'), 'wpcms-flux-layout' ),
 		  // 'priority'		=> 20
 		) );
 
@@ -87,9 +90,9 @@ class wpcms_flux_layout {
 
 			/* Main config */
 
-			'wpcms_flux_opts[columns_num]' => array(
-				'label'		=> 'Number of Vertical columns',
-				'desc'		=> 'Number of vertical columns in core configuration. Flux Layout also includes other common columns configurations automatically.',
+			$this->db_key . '[columns_num]' => array(
+				'label'		=> esc_html__( 'Number of Vertical columns', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Number of vertical columns in your main layout. Flux Layout also includes other common columns configurations automatically.', 'wpcms-flux-layout' ),
 				'datatype'	=> 'option',
 				'default'	=> 16,
 				'transport'	=> 'refresh',
@@ -103,9 +106,9 @@ class wpcms_flux_layout {
 
 			/* Content and sidebar */
 
-			'wpcms_flux_opts[content_s]' => array(
-				'label'		=> 'Content width (relative size)',
-				'desc'		=> 'Moomin2',
+			$this->db_key . '[content_s]' => array(
+				'label'		=> esc_html__( 'Content width (relative size)', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Moomin2', 'wpcms-flux-layout' ),
 				'datatype'	=> 'option',
 				'default'	=> 500,
 				'transport'	=> 'refresh',
