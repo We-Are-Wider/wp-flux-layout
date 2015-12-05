@@ -105,6 +105,36 @@ class wpcms_flux_layout {
 				'sanitize'	=> 'numeric'
 			),
 
+			$this->db_key . '[container_w]' => array(
+				'label'		=> esc_html__( 'Main container width', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( '% width of central main content container.', 'wpcms-flux-layout' ),
+				'datatype'	=> 'option',
+				'default'	=> 80,
+				'transport'	=> 'refresh',
+				'section'	=> 'wpcms_fluxl_core',
+				'type'		=> 'select_range',
+				'val_low'	=> 5,
+				'val_high'	=> 100,
+				'val_step'	=> 5,
+				'sanitize'	=> 'numeric'
+			),
+
+			$this->db_key . '[container_p]' => array(
+				'label'		=> esc_html__( 'Main container position', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Position the main content of the site within the browser viewport.', 'wpcms-flux-layout' ),
+				'datatype'	=> 'option',
+				'default'	=> 'middle',
+				'transport'	=> 'refresh',
+				'section'	=> 'wpcms_fluxl_core',
+				'type'		=> 'select',
+				'choices'	=> array(
+								'left'		=> 'left',
+								'middle'	=> 'middle',
+								'right'		=> 'right'
+							   ),
+				'sanitize'	=> 'no_html'
+			),
+
 			/* Content and sidebar */
 
 			$this->db_key . '[content_s]' => array(
