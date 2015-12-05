@@ -35,10 +35,11 @@ add_action( 'plugins_loaded', 'wpcms_fluxl_textdom') ;
  * Execute plugin
  *
  */
-function wpcms_fluxl_do() {
-	$wpcms_flux_do = ( is_customize_preview() ) ? new wpcms_flux_layout : '';
+function wpcms_fluxl_controls() {
+	$wpcms_fluxl_controls = ( is_customize_preview() ) ? new wpcms_flux_layout : false;
 }
-add_action( 'after_setup_theme','wpcms_fluxl_do', 1 );
+add_action( 'after_setup_theme','wpcms_fluxl_controls', 1 );
+
 
 /**
  *
@@ -47,17 +48,17 @@ add_action( 'after_setup_theme','wpcms_fluxl_do', 1 );
  */
 class wpcms_flux_layout {
 
-	//var $plugin; /* Common plugin definition */
 	var $db_key = 'wpcms_flux_layout';		/* Sets up option_name prepend string so we can switch to Wonderflux options if required */
 
 	function __construct() {
 
-	    //$this->widget_data = get_option( $this->plugin );
 	    // EXPERIMENTAL - Wonderflux theme framework options integration, cute!
 		$this->db_key = ( class_exists('wflux_theme_all') ) ? 'wonderflux_display' : 'wpcms_flux_layout';
+		// Create customiser controls
 		add_action('customize_register', array($this, 'customizer_do') );
 
 	}
+
 
 	function customizer_do($wp_customize){
 
@@ -78,12 +79,12 @@ class wpcms_flux_layout {
 		));
 
 		$wp_customize->add_section('wpcms_fluxl_content', array(
-			'title'			=> esc_html__( 'Main content and sidebar', 'wpcms-flux-layout' ),
+			'title'			=> esc_html__( 'Content and sidebar', 'wpcms-flux-layout' ),
 			'description'	=> esc_html__( 'Setup the dimensions of your main content area and sidebar.', 'wpcms-flux-layout' ),
 			'panel'			=> 'wpcms_flux_layout'
 		));
 
-		////// SITE/LOCATION SPECIFIC CONTROLS //////
+		////// CONTROLS //////
 		// Site param = 'subsites', 'all'
 
 		$controls = array(
@@ -119,14 +120,15 @@ class wpcms_flux_layout {
 
 		);
 
+		// Build the controls
 		foreach ( $controls as $opt => $val ) {
 
 			$wp_customize->add_setting( $opt, array(
-				'type'				=> $val['datatype'], // option or theme_mod
-				'default'			=> ( isset($val['default']) ) ? $val['default'] : false,
-				'transport'			=> $val['transport'], // refresh or postMessage
-				'sanitize_callback' => ( isset($val['sanitize']) ) ? array( $this, 'sanitize_' . $val['sanitize'] ) : false,
-				'sanitize_js_callback' => ( isset($val['sanitize']) ) ? array( $this, 'sanitize_' . $val['sanitize'] ) : false
+				'type'						=> $val['datatype'], // option or theme_mod
+				'default'					=> ( isset($val['default']) ) ? $val['default'] : false,
+				'transport'					=> $val['transport'], // refresh or postMessage
+				'sanitize_callback'			=> ( isset($val['sanitize']) ) ? array( $this, 'sanitize_' . $val['sanitize'] ) : false,
+				'sanitize_js_callback'		=> ( isset($val['sanitize']) ) ? array( $this, 'sanitize_' . $val['sanitize'] ) : false
 
 			));
 
