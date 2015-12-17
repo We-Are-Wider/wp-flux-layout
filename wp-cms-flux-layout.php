@@ -179,17 +179,15 @@ class wpcms_flux_layout {
 		));
 
 		////// CONTROLS //////
-		// Site param = 'subsites', 'all'
 
+		// Common Flux Layout controls
 		$controls = array(
-
-			/* Main config */
 
 			$this->db_key . '[columns_num]' => array(
 				'label'		=> esc_html__( 'Number of Vertical columns', 'wpcms-flux-layout' ),
 				'desc'		=> esc_html__( 'Number of vertical columns in your main layout. Flux Layout also includes other common columns configurations automatically.', 'wpcms-flux-layout' ),
 				'datatype'	=> 'option',
-				'default'	=> 16,
+				'default'	=> $this->defaults['columns_num'],
 				'transport'	=> 'refresh',
 				'section'	=> 'wpcms_fluxl_core',
 				'type'		=> 'select_range',
@@ -203,7 +201,7 @@ class wpcms_flux_layout {
 				'label'		=> esc_html__( 'Main container width', 'wpcms-flux-layout' ),
 				'desc'		=> esc_html__( '% width of central main content container.', 'wpcms-flux-layout' ),
 				'datatype'	=> 'option',
-				'default'	=> 80,
+				'default'	=> $this->defaults['container_w'],
 				'transport'	=> 'refresh',
 				'section'	=> 'wpcms_fluxl_core',
 				'type'		=> 'select_range',
@@ -217,32 +215,114 @@ class wpcms_flux_layout {
 				'label'		=> esc_html__( 'Main container position', 'wpcms-flux-layout' ),
 				'desc'		=> esc_html__( 'Position the main content of the site within the browser viewport.', 'wpcms-flux-layout' ),
 				'datatype'	=> 'option',
-				'default'	=> 'middle',
+				'default'	=> $this->defaults['container_p'],
 				'transport'	=> 'refresh',
 				'section'	=> 'wpcms_fluxl_core',
 				'type'		=> 'select',
 				'choices'	=> array(
-								'left'		=> 'left',
-								'middle'	=> 'middle',
-								'right'		=> 'right'
+								'left'		=> 'Left',
+								'middle'	=> 'Middle',
+								'right'		=> 'Right'
 							   ),
 				'sanitize'	=> 'no_html'
 			),
 
+		);
+
+		// Wonderflux specific controls
+		$wfx_controls = array(
+
 			/* Content and sidebar */
 
-			$this->db_key . '[content_s]' => array(
-				'label'		=> esc_html__( 'Content width (relative size)', 'wpcms-flux-layout' ),
-				'desc'		=> esc_html__( 'Moomin2', 'wpcms-flux-layout' ),
+			$this->db_key . '[rwd_full]' => array(
+				'label'		=> esc_html__( 'Sidebar/main content breakpoint', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Media query breakpoint for when sidebar and content goes full width for smaller screens.', 'wpcms-flux-layout' ),
 				'datatype'	=> 'option',
-				'default'	=> 500,
+				'default'	=> $this->defaults['rwd_full'],
 				'transport'	=> 'refresh',
 				'section'	=> 'wpcms_fluxl_content',
-				'type'		=> 'text',
+				'type'		=> 'select',
+				'choices'	=> array(
+								'tiny'		=> 'Tiny',
+								'small'		=> 'Small',
+								'medium'	=> 'Medium',
+								'large'		=> 'Large'
+							   ),
+				'sanitize'	=> 'no_html'
+			),
+
+			$this->db_key . '[content_s]' => array(
+				'label'		=> esc_html__( 'Content width', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Relative size to site width.', 'wpcms-flux-layout' ),
+				'datatype'	=> 'option',
+				'default'	=> $this->defaults['content_s'],
+				'transport'	=> 'refresh',
+				'section'	=> 'wpcms_fluxl_content',
+				'type'		=> 'select',
+				'choices'	=> $this->common_size,
+				'sanitize'	=> 'no_html'
+			),
+
+			$this->db_key . '[sidebar_s]' => array(
+				'label'		=> esc_html__( 'Sidebar width', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Relative size to site width.', 'wpcms-flux-layout' ),
+				'datatype'	=> 'option',
+				'default'	=> $this->defaults['sidebar_s'],
+				'transport'	=> 'refresh',
+				'section'	=> 'wpcms_fluxl_content',
+				'type'		=> 'select',
+				'choices'	=> $this->common_size,
+				'sanitize'	=> 'no_html'
+			),
+
+			$this->db_key . '[sidebar_d]' => array(
+				'label'		=> esc_html__( 'Sidebar display', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Do you want to show or hide the sidebar sitewide (can override with filter.)', 'wpcms-flux-layout' ),
+				'datatype'	=> 'option',
+				'default'	=> $this->defaults['sidebar_d'],
+				'transport'	=> 'refresh',
+				'section'	=> 'wpcms_fluxl_content',
+				'type'		=> 'select',
+				'choices'	=> array(
+								'Y'		=> 'Show',
+								'N'		=> 'Hide'
+							   ),
+				'sanitize'	=> 'no_html'
+			),
+
+			$this->db_key . '[sidebar_p]' => array(
+				'label'		=> esc_html__( 'Sidebar position', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Position sidebar left or right of the main content.', 'wpcms-flux-layout' ),
+				'datatype'	=> 'option',
+				'default'	=> $this->defaults['sidebar_p'],
+				'transport'	=> 'refresh',
+				'section'	=> 'wpcms_fluxl_content',
+				'type'		=> 'select',
+				'choices'	=> array(
+								'left'		=> 'Left',
+								'right'		=> 'Right'
+							   ),
+				'sanitize'	=> 'no_html'
+			),
+
+			$this->db_key . '[content_s_px]' => array(
+				'label'		=> esc_html__( 'Media width', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Sets WordPress $content_width. Pixel width of embeded media such as YouTube - Flux Layout makes this responsive for you.', 'wpcms-flux-layout' ),
+				'datatype'	=> 'option',
+				'default'	=> $this->defaults['content_s_px'],
+				'transport'	=> 'refresh',
+				'section'	=> 'wpcms_fluxl_content',
+				'type'		=> 'select_range',
+				'val_low'	=> 200,
+				'val_high'	=> 1200,
+				'val_step'	=> 5,
 				'sanitize'	=> 'numeric'
 			)
 
 		);
+
+		// Merged extra Wonderflux controls into array for setup if required
+		$controls = ( $this->db_key == 'wonderflux_display' ) ? array_merge( $controls, $wfx_controls ) : $controls;
 
 		// Build the controls
 		foreach ( $controls as $opt => $val ) {
