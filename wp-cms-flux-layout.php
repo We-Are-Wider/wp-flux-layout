@@ -4,7 +4,7 @@
  Plugin URI: http://wp-cms.com
  Description: Adds the Flux Layout responsive CSS framework to your WordPress site. Configure options through the WordPress Customizer (View website -> Top Admin Bar -> Customize).
  Author: Jonny Allbut
- Version: 0.1
+ Version: 0.2
  Author URI: http://jonnya.net
 */
 
@@ -14,6 +14,7 @@
 /////////  VERSION HISTORY
 
 0.1 - Initial work-in-progress release
+0.2 - Main Wonderflux options working in Customizer (whoot!)
 
 */
 
@@ -167,7 +168,7 @@ class wpcms_flux_layout {
 		//////// SECTIONS ////////
 
 		$wp_customize->add_section('wpcms_fluxl_core', array(
-			'title'			=> esc_html__( 'Main configuration', 'wpcms-flux-layout' ),
+			'title'			=> esc_html__( 'Layout', 'wpcms-flux-layout' ),
 			'description'	=> esc_html__( 'Setup the dimensions of your CSS layout columns (grid system).', 'wpcms-flux-layout' ),
 			'panel'			=> 'wpcms_flux_layout'
 		));
@@ -175,6 +176,12 @@ class wpcms_flux_layout {
 		$wp_customize->add_section('wpcms_fluxl_content', array(
 			'title'			=> esc_html__( 'Content and sidebar', 'wpcms-flux-layout' ),
 			'description'	=> esc_html__( 'Setup the dimensions of your main content area and sidebar.', 'wpcms-flux-layout' ),
+			'panel'			=> 'wpcms_flux_layout'
+		));
+
+		$wp_customize->add_section('wpcms_fluxl_config', array(
+			'title'			=> esc_html__( 'Configuration', 'wpcms-flux-layout' ),
+			'description'	=> esc_html__( 'Configure other Wonderflux settings.', 'wpcms-flux-layout' ),
 			'panel'			=> 'wpcms_flux_layout'
 		));
 
@@ -232,6 +239,32 @@ class wpcms_flux_layout {
 		// Wonderflux specific controls
 		$wfx_controls = array(
 
+			/* Main configuration */
+
+			$this->db_key . '[content_s]' => array(
+				'label'		=> esc_html__( 'Content width', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Relative size to site width.', 'wpcms-flux-layout' ),
+				'datatype'	=> 'option',
+				'default'	=> $this->defaults['content_s'],
+				'transport'	=> 'refresh',
+				'section'	=> 'wpcms_fluxl_core',
+				'type'		=> 'select',
+				'choices'	=> $this->common_size,
+				'sanitize'	=> 'no_html'
+			),
+
+			$this->db_key . '[sidebar_s]' => array(
+				'label'		=> esc_html__( 'Sidebar width', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Relative size to site width.', 'wpcms-flux-layout' ),
+				'datatype'	=> 'option',
+				'default'	=> $this->defaults['sidebar_s'],
+				'transport'	=> 'refresh',
+				'section'	=> 'wpcms_fluxl_core',
+				'type'		=> 'select',
+				'choices'	=> $this->common_size,
+				'sanitize'	=> 'no_html'
+			),
+
 			/* Content and sidebar */
 
 			$this->db_key . '[rwd_full]' => array(
@@ -248,30 +281,6 @@ class wpcms_flux_layout {
 								'medium'	=> 'Medium',
 								'large'		=> 'Large'
 							   ),
-				'sanitize'	=> 'no_html'
-			),
-
-			$this->db_key . '[content_s]' => array(
-				'label'		=> esc_html__( 'Content width', 'wpcms-flux-layout' ),
-				'desc'		=> esc_html__( 'Relative size to site width.', 'wpcms-flux-layout' ),
-				'datatype'	=> 'option',
-				'default'	=> $this->defaults['content_s'],
-				'transport'	=> 'refresh',
-				'section'	=> 'wpcms_fluxl_content',
-				'type'		=> 'select',
-				'choices'	=> $this->common_size,
-				'sanitize'	=> 'no_html'
-			),
-
-			$this->db_key . '[sidebar_s]' => array(
-				'label'		=> esc_html__( 'Sidebar width', 'wpcms-flux-layout' ),
-				'desc'		=> esc_html__( 'Relative size to site width.', 'wpcms-flux-layout' ),
-				'datatype'	=> 'option',
-				'default'	=> $this->defaults['sidebar_s'],
-				'transport'	=> 'refresh',
-				'section'	=> 'wpcms_fluxl_content',
-				'type'		=> 'select',
-				'choices'	=> $this->common_size,
 				'sanitize'	=> 'no_html'
 			),
 
@@ -319,13 +328,15 @@ class wpcms_flux_layout {
 				'sanitize'	=> 'numeric'
 			),
 
+			/* Config */
+
 			$this->db_key . '[page_t]' => array(
 				'label'		=> esc_html__( 'No sidebar template', 'wpcms-flux-layout' ),
 				'desc'		=> esc_html__( 'Hide this Wonderflux page template if it does not suit your child theme (it will be removed from page template dropdown option in admin.)', 'wpcms-flux-layout' ),
 				'datatype'	=> 'option',
 				'default'	=> $this->defaults['page_t'],
 				'transport'	=> 'postMessage',
-				'section'	=> 'wpcms_fluxl_content',
+				'section'	=> 'wpcms_fluxl_config',
 				'type'		=> 'select',
 				'choices'	=> array(
 								'' => 'Show no sidebar template',
