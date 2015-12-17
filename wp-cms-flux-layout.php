@@ -75,6 +75,7 @@ class wpcms_flux_layout {
 			'sidebar_d'		=> 'Y',
 			'sidebar_p'		=> 'left',
 			'content_s_px'	=> '400',
+			'page_t'		=> ''
 		);
 
 		// Note that value/labels around other way for customizer compared to Wonderflux core!
@@ -317,6 +318,21 @@ class wpcms_flux_layout {
 				'val_high'	=> 1200,
 				'val_step'	=> 5,
 				'sanitize'	=> 'numeric'
+			),
+
+			$this->db_key . '[page_t]' => array(
+				'label'		=> esc_html__( 'No sidebar template', 'wpcms-flux-layout' ),
+				'desc'		=> esc_html__( 'Hide this Wonderflux page template if it does not suit your child theme (it will be removed from page template dropdown option in admin.)', 'wpcms-flux-layout' ),
+				'datatype'	=> 'option',
+				'default'	=> $this->defaults['page_t'],
+				'transport'	=> 'postMessage',
+				'section'	=> 'wpcms_fluxl_content',
+				'type'		=> 'select',
+				'choices'	=> array(
+								'' => 'Show no sidebar template',
+								'no-sidebar' => 'Hide no sidebar template'
+							   ),
+				'sanitize'	=> 'no_html'
 			)
 
 		);
