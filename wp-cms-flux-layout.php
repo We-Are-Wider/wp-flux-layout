@@ -37,9 +37,8 @@ add_action( 'plugins_loaded', 'wpcms_fluxl_textdom') ;
  */
 function wpcms_fluxl_controls() {
 
-	if ( is_user_logged_in() && current_user_can('edit_theme_options') ) {
-		// Do it!
-		$wpcms_fluxl_controls = ( is_customize_preview() ) ? new wpcms_flux_layout : false;
+	if ( is_user_logged_in() && is_customize_preview() ) {
+		$wpcms_fluxl_controls = ( current_user_can('edit_theme_options') ) ? new wpcms_flux_layout : false;
 	}
 
 }
