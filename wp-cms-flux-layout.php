@@ -36,7 +36,12 @@ add_action( 'plugins_loaded', 'wpcms_fluxl_textdom') ;
  *
  */
 function wpcms_fluxl_controls() {
-	$wpcms_fluxl_controls = ( is_customize_preview() ) ? new wpcms_flux_layout : false;
+
+	if ( is_user_logged_in() && current_user_can('edit_theme_options') ) {
+		// Do it!
+		$wpcms_fluxl_controls = ( is_customize_preview() ) ? new wpcms_flux_layout : false;
+	}
+
 }
 add_action( 'after_setup_theme','wpcms_fluxl_controls', 1 );
 
@@ -48,12 +53,101 @@ add_action( 'after_setup_theme','wpcms_fluxl_controls', 1 );
  */
 class wpcms_flux_layout {
 
+
 	var $db_key = 'wpcms_flux_layout';		/* Sets up option_name prepend string so we can switch to Wonderflux options if required */
+	var $defaults = false;					/* Holds default values for all options */
+	var $common_size = false;				/* Holds default values for size options */
+
 
 	function __construct() {
 
 	    // EXPERIMENTAL - Wonderflux theme framework options integration, cute!
 		$this->db_key = ( class_exists('wflux_theme_all') ) ? 'wonderflux_display' : 'wpcms_flux_layout';
+
+		// IMPORTANT - Setup default values for options and use elsewhere
+		$this->defaults = array(
+			'columns_num'	=> 16,
+			'container_w'	=> 80,
+			'container_p'	=> 'middle',
+			'rwd_full'		=> 'small',
+			'content_s'		=> 'three_quarter',
+			'sidebar_s'		=> 'quarter',
+			'sidebar_d'		=> 'Y',
+			'sidebar_p'		=> 'left',
+			'content_s_px'	=> '400',
+		);
+
+		// Note that value/labels around other way for customizer compared to Wonderflux core!
+		$this->common_size = array(
+			'full' => esc_attr__('Full','wpcms-flux-layout'),
+			'half' => esc_attr__('Half','wpcms-flux-layout'),
+			// 'third' => esc_attr__('1 Third','wpcms-flux-layout'),
+			// 'two_third' => esc_attr__('- 2 Thirds','wpcms-flux-layout'),
+			'quarter' => esc_attr__('1 Quarter','wpcms-flux-layout'),
+			'two_quarter' => esc_attr__('- 2 Quarters','wpcms-flux-layout'),
+			'three_quarter' => esc_attr__('- 3 Quarters','wpcms-flux-layout'),
+			'fifth' => esc_attr__('1 Fifth','wpcms-flux-layout'),
+			'two_fifth' => esc_attr__('- 2 Fifths','wpcms-flux-layout'),
+			'three_fifth' => esc_attr__('- 3 Fifths','wpcms-flux-layout'),
+			'four_fifth' => esc_attr__('- 4 Fifths','wpcms-flux-layout'),
+			// 'sixth' => esc_attr__('1 Sixth','wpcms-flux-layout'),
+			// 'two_sixth' => esc_attr__('- 2 Sixths','wpcms-flux-layout'),
+			// 'three_sixth' => esc_attr__('- 3 Sixths','wpcms-flux-layout'),
+			// 'four_sixth' => esc_attr__('- 4 Sixths','wpcms-flux-layout'),
+			// 'five_sixth' => esc_attr__('- 5 Sixths','wpcms-flux-layout'),
+			// 'seventh' => esc_attr__('1 Seventh','wpcms-flux-layout'),
+			// 'two_seventh' => esc_attr__('- 2 Sevenths','wpcms-flux-layout'),
+			// 'three_seventh' => esc_attr__('- 3 Sevenths','wpcms-flux-layout'),
+			// 'four_seventh' => esc_attr__('- 4 Sevenths','wpcms-flux-layout'),
+			// 'five_seventh' => esc_attr__('- 5 Sevenths','wpcms-flux-layout'),
+			// 'six_seventh' => esc_attr__('- 6 Sevenths','wpcms-flux-layout'),
+			'eighth' => esc_attr__('1 Eigth','wpcms-flux-layout'),
+			'two_eighth' => esc_attr__('- 2 Eigths','wpcms-flux-layout'),
+			'three_eighth' => esc_attr__('- 3 Eigths','wpcms-flux-layout'),
+			'four_eighth' => esc_attr__('- 4 Eigths','wpcms-flux-layout'),
+			'five_eighth' => esc_attr__('- 5 Eigths','wpcms-flux-layout'),
+			'six_eighth' => esc_attr__('- 6 Eigths','wpcms-flux-layout'),
+			'seven_eighth' => esc_attr__('- 7 Eigths','wpcms-flux-layout'),
+			// 'ninth' => esc_attr__('1 Ninth','wpcms-flux-layout'),
+			// 'two_ninth' => esc_attr__('- 2 Ninths','wpcms-flux-layout'),
+			// 'three_ninth' => esc_attr__('- 3 Ninths','wpcms-flux-layout'),
+			// 'four_ninth' => esc_attr__('- 4 Ninths','wpcms-flux-layout'),
+			// 'five_ninth' => esc_attr__('- 5 Ninths','wpcms-flux-layout'),
+			// 'six_ninth' => esc_attr__('- 6 Ninths','wpcms-flux-layout'),
+			// 'seven_ninth' => esc_attr__('- 7 Ninths','wpcms-flux-layout'),
+			// 'eight_ninth' => esc_attr__('- 8 Ninths','wpcms-flux-layout'),
+			'tenth' => esc_attr__('1 Tenth','wpcms-flux-layout'),
+			'two_tenth' => esc_attr__('- 2 Tenths','wpcms-flux-layout'),
+			'three_tenth' => esc_attr__('- 3 Tenths','wpcms-flux-layout'),
+			'four_tenth' => esc_attr__('- 4 Tenths','wpcms-flux-layout'),
+			'five_tenth' => esc_attr__('- 5 Tenths','wpcms-flux-layout'),
+			'six_tenth' => esc_attr__('- 6 Tenths','wpcms-flux-layout'),
+			'seven_tenth' => esc_attr__('- 7 Tenths','wpcms-flux-layout'),
+			'eight_tenth' => esc_attr__('- 8 Tenths','wpcms-flux-layout'),
+			'nine_tenth' => esc_attr__('- 9 Tenths','wpcms-flux-layout'),
+			// 'eleventh' => esc_attr__('1 Eleventh','wpcms-flux-layout'),
+			// 'two_eleventh' => esc_attr__('- 2 Elevenths','wpcms-flux-layout'),
+			// 'three_eleventh' => esc_attr__('- 3 Elevenths','wpcms-flux-layout'),
+			// 'four_eleventh' => esc_attr__('- 4 Elevenths','wpcms-flux-layout'),
+			// 'five_eleventh' => esc_attr__('- 5 Elevenths','wpcms-flux-layout'),
+			// 'six_eleventh' => esc_attr__('- 6 Elevenths','wpcms-flux-layout'),
+			// 'seven_eleventh' => esc_attr__('- 7 Elevenths','wpcms-flux-layout'),
+			// 'eight_eleventh' => esc_attr__('- 8 Elevenths','wpcms-flux-layout'),
+			// 'nine_eleventh' => esc_attr__('- 9 Elevenths','wpcms-flux-layout'),
+			// 'ten_eleventh' => esc_attr__('- 10 Elevenths','wpcms-flux-layout'),
+			// 'twelveth' => esc_attr__('1 Twelveth','wpcms-flux-layout'),
+			// 'two_twelveth' => esc_attr__('- 2 Twelveths','wpcms-flux-layout'),
+			// 'three_twelveth' => esc_attr__('- 3 Twelveths','wpcms-flux-layout'),
+			// 'four_twelveth' => esc_attr__('- 4 Twelveths','wpcms-flux-layout'),
+			// 'five_twelveth' => esc_attr__('- 5 Twelveths','wpcms-flux-layout'),
+			// 'six_twelveth' => esc_attr__('- 6 Twelveths','wpcms-flux-layout'),
+			// 'seven_twelveth' => esc_attr__('- 7 Twelveths','wpcms-flux-layout'),
+			// 'eight_twelveth' => esc_attr__('- 8 Twelveths','wpcms-flux-layout'),
+			// 'nine_twelveth' => esc_attr__('- 9 Twelveths','wpcms-flux-layout'),
+			// 'ten_twelveth' => esc_attr__('- 10 Twelveths','wpcms-flux-layout'),
+			// 'eleven_twelveth' => esc_attr__('- 11 Twelveths','wpcms-flux-layout')
+		);
+
 		// Create customiser controls
 		add_action('customize_register', array($this, 'customizer_do') );
 
