@@ -81,10 +81,10 @@ class flux_layout_css extends wider_flux_layout {
 		//print_r( get_theme_mod( $this->db_key ) );
 
 		$data = get_theme_mod( $this->db_key );
-		$columns = ( array_key_exists('columns_num', $data ) && is_numeric( $data['columns_num'] ) ) ? $data['columns_num'] : $this->default_vals['columns_num'];
-		$position = ( array_key_exists('container_p', $data ) && !empty( $data['container_p'] ) ) ? $data['container_p'] : $this->default_vals['container_p'];
-		$sb_position = ( array_key_exists('sidebar_p', $data ) && !empty( $data['sidebar_p'] ) ) ? $data['sidebar_p'] : $this->default_vals['sidebar_p'];
-		$container_w = ( array_key_exists('container_w', $data ) && !empty( $data['container_w'] ) ) ? $data['container_w'] : $this->default_vals['container_w'];
+		$columns = ( is_array($data) && array_key_exists('columns_num', $data ) && is_numeric( $data['columns_num'] ) ) ? $data['columns_num'] : $this->default_vals['columns_num'];
+		$position = ( is_array($data) && array_key_exists('container_p', $data ) && !empty( $data['container_p'] ) ) ? $data['container_p'] : $this->default_vals['container_p'];
+		$sb_position = ( is_array($data) && array_key_exists('sidebar_p', $data ) && !empty( $data['sidebar_p'] ) ) ? $data['sidebar_p'] : $this->default_vals['sidebar_p'];
+		$container_w = ( is_array($data) && array_key_exists('container_w', $data ) && !empty( $data['container_w'] ) ) ? $data['container_w'] : $this->default_vals['container_w'];
 
 		$vars = '&amp;w=' . $container_w
 		. '&amp;wu=' . 'percent'
