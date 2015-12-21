@@ -1,0 +1,305 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Wider Flux Layout\n"
+"POT-Creation-Date: 2015-12-20 23:57+0000\n"
+"PO-Revision-Date: 2015-12-20 23:56+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: wider-flux-layout.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: wider-flux-customizer.php:23
+msgid "Full"
+msgstr ""
+
+#: wider-flux-customizer.php:24
+msgid "Half"
+msgstr ""
+
+#: wider-flux-customizer.php:27
+msgid "1 Quarter"
+msgstr ""
+
+#: wider-flux-customizer.php:28
+msgid "- 2 Quarters"
+msgstr ""
+
+#: wider-flux-customizer.php:29
+msgid "- 3 Quarters"
+msgstr ""
+
+#: wider-flux-customizer.php:30
+msgid "1 Fifth"
+msgstr ""
+
+#: wider-flux-customizer.php:31
+msgid "- 2 Fifths"
+msgstr ""
+
+#: wider-flux-customizer.php:32
+msgid "- 3 Fifths"
+msgstr ""
+
+#: wider-flux-customizer.php:33
+msgid "- 4 Fifths"
+msgstr ""
+
+#: wider-flux-customizer.php:45
+msgid "1 Eigth"
+msgstr ""
+
+#: wider-flux-customizer.php:46
+msgid "- 2 Eigths"
+msgstr ""
+
+#: wider-flux-customizer.php:47
+msgid "- 3 Eigths"
+msgstr ""
+
+#: wider-flux-customizer.php:48
+msgid "- 4 Eigths"
+msgstr ""
+
+#: wider-flux-customizer.php:49
+msgid "- 5 Eigths"
+msgstr ""
+
+#: wider-flux-customizer.php:50
+msgid "- 6 Eigths"
+msgstr ""
+
+#: wider-flux-customizer.php:51
+msgid "- 7 Eigths"
+msgstr ""
+
+#: wider-flux-customizer.php:60
+msgid "1 Tenth"
+msgstr ""
+
+#: wider-flux-customizer.php:61
+msgid "- 2 Tenths"
+msgstr ""
+
+#: wider-flux-customizer.php:62
+msgid "- 3 Tenths"
+msgstr ""
+
+#: wider-flux-customizer.php:63
+msgid "- 4 Tenths"
+msgstr ""
+
+#: wider-flux-customizer.php:64
+msgid "- 5 Tenths"
+msgstr ""
+
+#: wider-flux-customizer.php:65
+msgid "- 6 Tenths"
+msgstr ""
+
+#: wider-flux-customizer.php:66
+msgid "- 7 Tenths"
+msgstr ""
+
+#: wider-flux-customizer.php:67
+msgid "- 8 Tenths"
+msgstr ""
+
+#: wider-flux-customizer.php:68
+msgid "- 9 Tenths"
+msgstr ""
+
+#: wider-flux-customizer.php:103
+msgid "Wonderflux"
+msgstr ""
+
+#: wider-flux-customizer.php:103
+msgid "Flux Layout"
+msgstr ""
+
+#: wider-flux-customizer.php:111
+msgid "Layout"
+msgstr ""
+
+#: wider-flux-customizer.php:112
+msgid "Setup the dimensions of your CSS layout columns (grid system)."
+msgstr ""
+
+#: wider-flux-customizer.php:117
+msgid "Content and sidebar"
+msgstr ""
+
+#: wider-flux-customizer.php:118
+msgid "Setup the dimensions of your main content area and sidebar."
+msgstr ""
+
+#: wider-flux-customizer.php:123
+msgid "Configuration"
+msgstr ""
+
+#: wider-flux-customizer.php:124
+msgid "Configure other Wonderflux settings."
+msgstr ""
+
+#: wider-flux-customizer.php:134
+msgid "Number of Vertical columns"
+msgstr ""
+
+#: wider-flux-customizer.php:135
+msgid ""
+"Number of vertical columns in your main layout. Flux Layout also includes "
+"other common columns configurations automatically."
+msgstr ""
+
+#: wider-flux-customizer.php:148
+msgid "Main container width"
+msgstr ""
+
+#: wider-flux-customizer.php:149
+msgid "% width of central main content container."
+msgstr ""
+
+#: wider-flux-customizer.php:162
+msgid "Main container position"
+msgstr ""
+
+#: wider-flux-customizer.php:163
+msgid "Position the main content of the site within the browser viewport."
+msgstr ""
+
+#: wider-flux-customizer.php:178
+msgid "Sidebar position"
+msgstr ""
+
+#: wider-flux-customizer.php:179
+msgid "Position sidebar left or right of the main content."
+msgstr ""
+
+#: wider-flux-customizer.php:200
+msgid "Content width"
+msgstr ""
+
+#: wider-flux-customizer.php:201 wider-flux-customizer.php:213
+msgid "Relative size to site width."
+msgstr ""
+
+#: wider-flux-customizer.php:212
+msgid "Sidebar width"
+msgstr ""
+
+#: wider-flux-customizer.php:226
+msgid "Sidebar/main content breakpoint"
+msgstr ""
+
+#: wider-flux-customizer.php:227
+msgid ""
+"Media query breakpoint for when sidebar and content goes full width for "
+"smaller screens."
+msgstr ""
+
+#: wider-flux-customizer.php:243
+msgid "Sidebar display"
+msgstr ""
+
+#: wider-flux-customizer.php:244
+msgid ""
+"Do you want to show or hide the sidebar sitewide (can override with filter.)"
+msgstr ""
+
+#: wider-flux-customizer.php:258
+msgid "Media width"
+msgstr ""
+
+#: wider-flux-customizer.php:259
+msgid ""
+"Sets WordPress $content_width. Pixel width of embeded media such as YouTube "
+"- Flux Layout makes this responsive for you."
+msgstr ""
+
+#: wider-flux-customizer.php:274
+msgid "Document type"
+msgstr ""
+
+#: wider-flux-customizer.php:275
+msgid "Default: transitional"
+msgstr ""
+
+#: wider-flux-customizer.php:282
+msgid "transitional"
+msgstr ""
+
+#: wider-flux-customizer.php:283
+msgid "strict"
+msgstr ""
+
+#: wider-flux-customizer.php:284
+msgid "frameset"
+msgstr ""
+
+#: wider-flux-customizer.php:285
+msgid "1.1"
+msgstr ""
+
+#: wider-flux-customizer.php:286
+msgid "1.1basic"
+msgstr ""
+
+#: wider-flux-customizer.php:287
+msgid "html5"
+msgstr ""
+
+#: wider-flux-customizer.php:288
+msgid "XHTML/RDFa"
+msgstr ""
+
+#: wider-flux-customizer.php:294
+msgid "Document language"
+msgstr ""
+
+#: wider-flux-customizer.php:295
+msgid "Default: en"
+msgstr ""
+
+#: wider-flux-customizer.php:491
+msgid "No sidebar template"
+msgstr ""
+
+#: wider-flux-customizer.php:492
+msgid ""
+"Hide this Wonderflux page template if it does not suit your child theme (it "
+"will be removed from page template dropdown option in admin.)"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Wider Flux Layout"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wider.co.uk"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Adds Flux Layout responsive CSS framework to your WordPress site. Configure "
+"options through the WordPress Customizer (View website -> Top Admin Bar -> "
+"Customize)."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Jonny Allbut"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://jonnya.net"
+msgstr ""

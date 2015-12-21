@@ -1,15 +1,17 @@
 <?php
 /*
- Plugin Name: WP-CMS Flux Layout
- Plugin URI: http://wp-cms.com
+ Plugin Name: Wider Flux Layout
+ Plugin URI: http://wider.co.uk
  Description: Adds Flux Layout responsive CSS framework to your WordPress site. Configure options through the WordPress Customizer (View website -> Top Admin Bar -> Customize).
  Author: Jonny Allbut
  Version: 0.3
- Author URI: http://jonnya.net
+ Author URI: https://jonnya.net
 */
 
 
 /*
+
+Text domain for translation: wider-flux-layout
 
 /////////  VERSION HISTORY
 
@@ -26,10 +28,10 @@
  * Same name as plugin directory
  *
  */
-add_action( 'plugins_loaded', 'wpcms_fluxl_textdom') ;
-function wpcms_fluxl_textdom() {
+add_action( 'plugins_loaded', 'wider_fluxl_textdom') ;
+function wider_fluxl_textdom() {
 
-	load_plugin_textdomain( 'wpcms-flux-layout', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+	load_plugin_textdomain( 'wider-flux-layout', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 
 }
 
@@ -39,11 +41,11 @@ function wpcms_fluxl_textdom() {
  * Deploy Flux Layout CSS
  *
  */
-add_action( 'wp_enqueue_scripts', 'wpcms_fluxl_css' );
-function wpcms_fluxl_css() {
+add_action( 'wp_enqueue_scripts', 'wider_fluxl_css' );
+function wider_fluxl_css() {
 
 	if ( !is_admin() ) {
-		new wpcms_flux_layout;
+		new wider_flux_layout;
 	}
 
 }
@@ -54,20 +56,20 @@ function wpcms_fluxl_css() {
  * Customizer controls
  *
  */
-add_action( 'after_setup_theme','wpcms_fluxl_customizer', 1 );
-function wpcms_fluxl_customizer() {
+add_action( 'after_setup_theme','wider_fluxl_customizer', 1 );
+function wider_fluxl_customizer() {
 
 	if ( ( is_user_logged_in() && is_customize_preview() ) && current_user_can( 'edit_theme_options' ) ) {
-		new wpcms_flux_layout_customizer;
+		new wider_flux_layout_customizer;
 	}
 }
 
 
-class wpcms_flux_layout {
+class wider_flux_layout {
 
 	var $version = 0.3;						/* Plugin version */
 	var $defaults = false;					/* Holds default values for all options */
-	var $db_key = 'wpcms_flux_layout';		/* Sets up option_name, switch to Wonderflux options if required */
+	var $db_key = 'wider_flux_layout';		/* Sets up option_name, switch to Wonderflux options if required */
 	var $datatype = 'theme_mod';			/* How data is saved - theme_mod or option for Wonderflux */
 	var $default_vals = array(
 			'columns_num'	=> 16,
@@ -79,7 +81,9 @@ class wpcms_flux_layout {
 			'sidebar_d'		=> 'Y',
 			'sidebar_p'		=> 'left',
 			'content_s_px'	=> '400',
-			'page_t'		=> ''
+			'page_t'		=> '',
+			'doc_type'		=> 'transitional',
+			'doc_lang'		=> 'en'
 		);
 
 	function __construct() {
@@ -93,7 +97,7 @@ class wpcms_flux_layout {
 		// Added as a plugin, need Flux Layout!
 		} else {
 
-			include_once( plugin_dir_path( __FILE__ ) . '/wp-cms-flux-css.php' );
+			include_once( plugin_dir_path( __FILE__ ) . '/wider-flux-css.php' );
 			new flux_layout_css;
 
 		}
@@ -103,11 +107,11 @@ class wpcms_flux_layout {
 }
 
 
-class wpcms_flux_layout_customizer {
+class wider_flux_layout_customizer {
 
 	function __construct() {
 
-		include_once( plugin_dir_path( __FILE__ ) . '/wp-cms-flux-customizer.php' );
+		include_once( plugin_dir_path( __FILE__ ) . '/wider-flux-customizer.php' );
 		new flux_layout_customizer;
 
 	}

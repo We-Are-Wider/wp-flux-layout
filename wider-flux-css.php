@@ -7,7 +7,7 @@
  * @version	0.3
  *
  */
-class flux_layout_css extends wpcms_flux_layout {
+class flux_layout_css extends wider_flux_layout {
 
 
 	function __construct() {
