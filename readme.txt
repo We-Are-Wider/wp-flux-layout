@@ -1,4 +1,4 @@
-=== Wider Flux Layout ===
+=== WP Flux Layout ===
 Contributors: Jonnyauk
 Tags: css, responsive
 Requires at least: 4.0
@@ -13,7 +13,7 @@ Generates a dynamic responsive CSS grid system - any columns, any width - in les
 x
 
 == Installation ==
-1. Upload `wider-flux-layout` directory to your WordPress plugins directory - usually `wp-content/plugins/`.
+1. Upload `wp-flux-layout` directory to your WordPress plugins directory - usually `wp-content/plugins/`.
 2. Activate the plugin through the `Plugins` menu in WordPress.
 3. Configure by using the WordPress Customiser - (click on `Customise` in the top admin menu).
 

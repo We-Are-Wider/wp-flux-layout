@@ -1,6 +1,6 @@
 <?php
 /*
- Plugin Name: Wider Flux Layout
+ Plugin Name: WP Flux Layout
  Plugin URI: http://wider.co.uk
  Description: Adds Flux Layout responsive CSS framework to your WordPress site. Configure options through the WordPress Customizer (View website -> Top Admin Bar -> Customize).
  Author: Jonny Allbut
@@ -11,7 +11,7 @@
 
 /*
 
-Text domain for translation: wider-flux-layout
+Text domain for translation: wp-flux-layout
 
 /////////  VERSION HISTORY
 
@@ -31,7 +31,7 @@ Text domain for translation: wider-flux-layout
 add_action( 'plugins_loaded', 'wider_fluxl_textdom') ;
 function wider_fluxl_textdom() {
 
-	load_plugin_textdomain( 'wider-flux-layout', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+	load_plugin_textdomain( 'wp-flux-layout', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 
 }
 
@@ -69,7 +69,7 @@ class wider_flux_layout {
 
 	var $version = 0.3;						/* Plugin version */
 	var $defaults = false;					/* Holds default values for all options */
-	var $db_key = 'wider_flux_layout';		/* Sets up option_name, switch to Wonderflux options if required */
+	var $db_key = 'wp_flux_layout';			/* Sets up option_name, switch to Wonderflux options if required */
 	var $datatype = 'theme_mod';			/* How data is saved - theme_mod or option for Wonderflux */
 	var $default_vals = array(
 			'columns_num'	=> 16,
