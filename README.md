@@ -1,4 +1,4 @@
-# Wider Flux Layout
+# Wider - Flux Layout
 Creatives don't like being dictated to or told how many columns their layout has to have or having a whole bunch of other junk CSS that you have to load and overload. Flux layout is a fully dynamic responsive layout system with extensive built-in media queries and logically named CSS classes.
 
 This plugin adds the Flux Layout responsive CSS framework to your WordPress site - any columns, and setup - and tiny... under 6k gzipped!. Change on the fly on a per view basis by filtering values or create and minify your own static CSS file... it's the responsive layout system built to be as flexible as possible!
