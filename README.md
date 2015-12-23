@@ -18,7 +18,7 @@ Stand-alone version (to be used with any non-Wonderflux theme) includes the foll
 * Sidebar poisition
 
 If you are using [Wonderflux](http://wonderflux.com) and have created your own child theme you get A-LOT more options:
-* Number of verstical columns
+* Number of vertical columns
 * Main content width
 * Main container position
 * Content width
